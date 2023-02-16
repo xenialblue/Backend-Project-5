@@ -2,10 +2,11 @@ import express from "express";
 
 import { Home, Lomba, Peserta } from "../controllers/home.js";
 
-
 const router = express.Router();
-router.use(express.static('views'));
 
+global.app = express();
+
+router.use(express.static('views'));
 
 router.get('/', Home);
 router.get('/lomba', Lomba);
