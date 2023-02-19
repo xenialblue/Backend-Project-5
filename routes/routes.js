@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import mysql from "mysql";
 import axios from "axios";
 
@@ -19,14 +19,25 @@ global.connection = mysql.createConnection({
 });
 
 axios.get('/user?ID=u1084987_kelompok_5')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-  .finally(function () {
-  });
+    .then(function (response) {
+        console.log(response);
+    })
+    .catch(function (error) {
+        console.log(error);
+    })
+    .finally(function () {
+    });
+
+axios.get('/password?PASS=8gwfyqbwgb')
+    .then(function (response) {
+        console.log(response);
+    })
+    .catch(function(error) {
+        console.log(error);
+    })
+    .finally(function   () {
+    });
+
 router.get('/', Home);
 router.get('/lomba', Lomba);
 router.get('/list-peserta', Peserta);
