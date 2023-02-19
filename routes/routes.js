@@ -1,6 +1,5 @@
 import express, { response } from "express";
 import mysql from "mysql";
-import axios from "axios";
 
 import { Home, Lomba, Peserta } from "../controllers/home.js";
 
@@ -17,26 +16,6 @@ global.connection = mysql.createConnection({
     password : '8gwfyqbwgb',
     database : 'u1084987_kelompok_5'
 });
-
-axios.get('/user?ID=u1084987_kelompok_5')
-    .then(function (response) {
-        console.log(response);
-    })
-    .catch(function (error) {
-        console.log(error);
-    })
-    .finally(function () {
-    });
-
-axios.get('/password?PASS=8gwfyqbwgb')
-    .then(function (response) {
-        console.log(response);
-    })
-    .catch(function(error) {
-        console.log(error);
-    })
-    .finally(function   () {
-    });
 
 router.get('/', Home);
 router.get('/lomba', Lomba);
