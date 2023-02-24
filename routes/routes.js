@@ -20,7 +20,6 @@ router.post('/contents', createContents);
 router.put('/contents/:id', updateContents);
 router.delete('/contents/:id', deleteContents);
 
-// Menambahkan middleware express.static ke router
 router.use('/uploads', express.static(path.join(dirname, 'uploads')));
 
 export default router;

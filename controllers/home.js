@@ -5,6 +5,9 @@ const dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const uploadDirectory = './uploads';
 
+if (!fs.existsSync(uploadDirectory)) {
+    fs.mkdirSync(uploadDirectory);
+}
 //get data
 export const getContent = async (req, res) => {
     try {
@@ -16,7 +19,7 @@ export const getContent = async (req, res) => {
 }
 
 //get data_id
-export const getContentById = async (req, res) => {
+export const getContentsById = async (req, res) => {
     try {
         const contents = await Contents.findAll({
             where: {
