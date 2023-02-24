@@ -1,13 +1,10 @@
-import express, { response } from "express";
-import mysql from "mysql";
-
-import { Home, Lomba, Peserta } from "../controllers/home.js";
+import express from "express";
+import mysql from 'mysql';
+import { getContent, getContentsById, createContents, updateContents, deleteContents } from "../controllers/home.js";
+import path from 'path';
 
 const router = express.Router();
-
-global.app = express();
-
-router.use(express.static('views'));
+const dirname = path.dirname(new URL(import.meta.url).pathname);
 
 global.connection = mysql.createConnection({
     host : '5.181.216.42',
@@ -17,8 +14,13 @@ global.connection = mysql.createConnection({
     database : 'u1084987_kelompok_5'
 });
 
-router.get('/', Home);
-router.get('/lomba', Lomba);
-router.get('/list-peserta', Peserta);
+router.get('/contents', getContent);
+router.get('/contents/:id', getContentsById);
+router.post('/contents', createContents);
+router.put('/contents/:id', updateContents);
+router.delete('/contents/:id', deleteContents);
+
+// Menambahkan middleware express.static ke router
+router.use('/uploads', express.static(path.join(dirname, 'uploads')));
 
 export default router;
