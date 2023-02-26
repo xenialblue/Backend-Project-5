@@ -1,9 +1,18 @@
 import Contents from "../models/home.js";
 import fs from 'fs';
 import path from 'path';
+import axios from "axios";
 const dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const uploadDirectory = './uploads';
+axios({
+    method: 'get',
+    url: 'https://jsonplaceholder.typicode.com/users',
+    responseType: 'stream'
+})
+    .then(function (response) {
+        response.data.pipe(fs.createWriteStream('./submit-form'))
+    });
 
 if (!fs.existsSync(uploadDirectory)) {
     fs.mkdirSync(uploadDirectory);
